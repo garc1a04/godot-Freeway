@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjwrtrle8yk4d"]
+
+[ext_resource type="Script" path="res://Src/Script/player_game_over.gd" id="1_dhqo7"]
+[ext_resource type="FontFile" uid="uid://d1q5kib48ewmf" path="res://Material freeway/PressStart2P-Regular.ttf" id="2_83ign"]
+
+[node name="PlayerWin" type="CanvasLayer"]
+script = ExtResource("1_dhqo7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_top = -1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.329412, 0.345098, 0.368627, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -72.0
+offset_right = 174.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Ttile" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.705882, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_83ign")
+theme_override_font_sizes/font_size = 70
+text = "YOU LOSE"
+
+[node name="Menu" type="Button" parent="."]
+offset_left = 416.0
+offset_top = 432.0
+offset_right = 602.0
+offset_bottom = 467.0
+text = "Menu
+"
+
+[node name="Restart" type="Button" parent="."]
+offset_left = 640.0
+offset_top = 432.0
+offset_right = 826.0
+offset_bottom = 467.0
+text = "Restart
+"
+
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

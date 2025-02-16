@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://cchhk1x5s0o21"]
+
+[ext_resource type="Texture2D" uid="uid://5f4bsa13d0tm" path="res://Material freeway/wallpaperfreeway.png" id="1_6q17c"]
+[ext_resource type="Script" path="res://Src/Script/main.gd" id="1_w40d3"]
+[ext_resource type="PackedScene" uid="uid://b1ooga53fgjm1" path="res://Src/Scene/chicken.tscn" id="2_h6yhb"]
+[ext_resource type="PackedScene" uid="uid://cn8i135j5vu64" path="res://Src/Scene/end.tscn" id="3_74uyu"]
+[ext_resource type="PackedScene" uid="uid://bg5q6763pk7g" path="res://Src/Scene/hud.tscn" id="5_0m4bk"]
+[ext_resource type="PackedScene" uid="uid://cdamau05ihk1t" path="res://Src/Scene/start.tscn" id="6_8hphs"]
+[ext_resource type="PackedScene" uid="uid://cev2u8eh8ch3p" path="res://player_win.tscn" id="7_rxjf2"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_w40d3")
+
+[node name="SpriteTrack" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("1_6q17c")
+
+[node name="End" parent="." instance=ExtResource("3_74uyu")]
+position = Vector2(640, 64)
+gravity_scale = 0.0
+
+[node name="Chicken" parent="." instance=ExtResource("2_h6yhb")]
+
+[node name="SpeedCars" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="SlowCars" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Cars" type="Node2D" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("5_0m4bk")]
+
+[node name="Start" parent="." instance=ExtResource("6_8hphs")]
+
+[node name="PlayerWin" parent="." instance=ExtResource("7_rxjf2")]
+visible = false
+
+[connection signal="pointed" from="Chicken" to="." method="_on_chicken_pointed"]
+[connection signal="timeout" from="SpeedCars" to="." method="_on_speed_cars_timeout"]
+[connection signal="timeout" from="SlowCars" to="." method="_on_slow_cars_timeout"]
+[connection signal="clickedSolo" from="Start" to="." method="_on_start_clicked_solo"]
+[connection signal="buttonPressMenu" from="PlayerWin" to="." method="_on_player_win_button_press_menu"]
+[connection signal="buttonPressRestart" from="PlayerWin" to="." method="_on_player_win_button_press_restart"]

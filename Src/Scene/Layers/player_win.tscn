@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://cev2u8eh8ch3p"]
+
+[ext_resource type="Script" path="res://Src/Script/player_win.gd" id="1_bqqep"]
+[ext_resource type="FontFile" uid="uid://d1q5kib48ewmf" path="res://Material freeway/PressStart2P-Regular.ttf" id="2_ngkwk"]
+[ext_resource type="Texture2D" uid="uid://c3l6hf7d0fx7b" path="res://Material freeway/galinha/baixo/sprite_0.png" id="3_pxxla"]
+[ext_resource type="Texture2D" uid="uid://l0f2qntin0h5" path="res://Material freeway/galinha/baixo/sprite_1.png" id="4_i4o6d"]
+[ext_resource type="Texture2D" uid="uid://cyydl8uf8gwjd" path="res://Material freeway/galinha/baixo/sprite_2.png" id="5_lqlsa"]
+[ext_resource type="Texture2D" uid="uid://ckdx2xw7ybtev" path="res://Material freeway/galinha/cima/sprite_0.png" id="6_gc7ne"]
+[ext_resource type="Texture2D" uid="uid://jxkfggn62i36" path="res://Material freeway/galinha/cima/sprite_1.png" id="7_vi8ll"]
+[ext_resource type="Texture2D" uid="uid://o8o7jh61hbgs" path="res://Material freeway/galinha/cima/sprite_2.png" id="8_msn5q"]
+[ext_resource type="Texture2D" uid="uid://ccmnrp6r6bgcb" path="res://Material freeway/carros/coches (1).png" id="9_t7s6t"]
+[ext_resource type="AudioStream" uid="uid://bxwxdbcoxcrad" path="res://Material freeway/sons/ganhou.wav" id="10_tb6cj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p372i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pxxla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i4o6d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lqlsa")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_gc7ne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vi8ll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_msn5q")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 15.0
+}]
+
+[node name="PlayerWin" type="CanvasLayer"]
+script = ExtResource("1_bqqep")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_top = -1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.329412, 0.345098, 0.368627, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -72.0
+offset_right = 174.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Ttile" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.705882, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ngkwk")
+theme_override_font_sizes/font_size = 70
+text = "YOU WIN"
+
+[node name="Menu" type="Button" parent="."]
+offset_left = 416.0
+offset_top = 432.0
+offset_right = 602.0
+offset_bottom = 467.0
+text = "Menu
+"
+
+[node name="Restart" type="Button" parent="."]
+offset_left = 640.0
+offset_top = 432.0
+offset_right = 826.0
+offset_bottom = 467.0
+text = "Restart
+"
+
+[node name="SpriteChicken" type="AnimatedSprite2D" parent="."]
+position = Vector2(1031, -73)
+sprite_frames = SubResource("SpriteFrames_p372i")
+animation = &"Down"
+autoplay = "Down"
+speed_scale = 2.0
+
+[node name="Car" type="Sprite2D" parent="."]
+position = Vector2(1032, -240)
+rotation = 3.14159
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_t7s6t")
+
+[node name="Win" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_tb6cj")
+
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

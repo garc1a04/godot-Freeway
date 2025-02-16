@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://8j4sfsj4fun"]
+
+[ext_resource type="Script" path="res://Src/Script/MultiplayerLocal.gd" id="1_gawxn"]
+[ext_resource type="Texture2D" uid="uid://5f4bsa13d0tm" path="res://Material freeway/wallpaperfreeway.png" id="2_usohc"]
+[ext_resource type="PackedScene" uid="uid://cn8i135j5vu64" path="res://Src/Scene/Objects/end.tscn" id="3_kicx2"]
+[ext_resource type="PackedScene" uid="uid://b1ooga53fgjm1" path="res://Src/Scene/Objects/chicken.tscn" id="4_rvj3a"]
+[ext_resource type="Script" path="res://Src/Script/player2.gd" id="5_e1156"]
+[ext_resource type="PackedScene" uid="uid://c3lawi7gtkm30" path="res://Src/Scene/Layers/hudMult.tscn" id="6_eboff"]
+[ext_resource type="AudioStream" uid="uid://bhnruyvdrwdf8" path="res://Material freeway/sons/tema.wav" id="7_b0cmn"]
+[ext_resource type="AudioStream" uid="uid://biwdnuttagikl" path="res://Material freeway/sons/ponto.wav" id="8_bxclc"]
+
+[node name="MultiplayerLocal" type="Node"]
+script = ExtResource("1_gawxn")
+
+[node name="End" parent="." instance=ExtResource("3_kicx2")]
+position = Vector2(640, 64)
+gravity_scale = 0.0
+
+[node name="SpriteTrack" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("2_usohc")
+
+[node name="Chicken" type="Node2D" parent="."]
+
+[node name="FirstChicken" parent="Chicken" instance=ExtResource("4_rvj3a")]
+position = Vector2(344, 688)
+
+[node name="SecondChicken2" parent="Chicken" instance=ExtResource("4_rvj3a")]
+position = Vector2(1000, 688)
+script = ExtResource("5_e1156")
+
+[node name="SpeedCars" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="SlowCars" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Cars" type="Node2D" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("6_eboff")]
+
+[node name="SoundTheme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_b0cmn")
+
+[node name="SoundPointed" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_bxclc")
+
+[connection signal="collision" from="Chicken/FirstChicken" to="." method="_on_first_chicken_collision"]
+[connection signal="die" from="Chicken/FirstChicken" to="." method="_on_first_chicken_die"]
+[connection signal="pointed" from="Chicken/FirstChicken" to="." method="_on_first_chicken_pointed"]
+[connection signal="collision" from="Chicken/SecondChicken2" to="." method="_on_second_chicken_2_collision"]
+[connection signal="die" from="Chicken/SecondChicken2" to="." method="_on_second_chicken_2_die"]
+[connection signal="pointed" from="Chicken/SecondChicken2" to="." method="_on_second_chicken_2_pointed"]
+[connection signal="timeout" from="SpeedCars" to="." method="_on_speed_cars_timeout"]
+[connection signal="timeout" from="SlowCars" to="." method="_on_slow_cars_timeout"]

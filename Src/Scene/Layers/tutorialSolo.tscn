@@ -1,0 +1,133 @@
+[gd_scene load_steps=10 format=3 uid="uid://dx4f218j3j483"]
+
+[ext_resource type="FontFile" uid="uid://d1q5kib48ewmf" path="res://Material freeway/PressStart2P-Regular.ttf" id="1_rkh68"]
+[ext_resource type="Texture2D" uid="uid://c3l6hf7d0fx7b" path="res://Material freeway/galinha/baixo/sprite_0.png" id="2_p6gcl"]
+[ext_resource type="Texture2D" uid="uid://l0f2qntin0h5" path="res://Material freeway/galinha/baixo/sprite_1.png" id="3_whk0o"]
+[ext_resource type="Texture2D" uid="uid://cyydl8uf8gwjd" path="res://Material freeway/galinha/baixo/sprite_2.png" id="4_h5crj"]
+[ext_resource type="Texture2D" uid="uid://ckdx2xw7ybtev" path="res://Material freeway/galinha/cima/sprite_0.png" id="5_p2ojr"]
+[ext_resource type="Texture2D" uid="uid://jxkfggn62i36" path="res://Material freeway/galinha/cima/sprite_1.png" id="6_3utoi"]
+[ext_resource type="Texture2D" uid="uid://o8o7jh61hbgs" path="res://Material freeway/galinha/cima/sprite_2.png" id="7_vkpoe"]
+[ext_resource type="Script" path="res://Src/Script/button_play.gd" id="8_pwd4a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_im5fi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p6gcl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_whk0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h5crj")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_p2ojr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3utoi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vkpoe")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="Tutorial" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.329438, 0.346042, 0.368184, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 70.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.705882, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_rkh68")
+theme_override_font_sizes/font_size = 50
+text = "TUTORIAL"
+
+[node name="ChickenUp" type="AnimatedSprite2D" parent="."]
+position = Vector2(1112, 144)
+sprite_frames = SubResource("SpriteFrames_im5fi")
+animation = &"up"
+autoplay = "up"
+frame_progress = 0.841396
+
+[node name="Up" type="Label" parent="."]
+offset_left = 304.0
+offset_top = 152.0
+offset_right = 1204.0
+offset_bottom = 202.0
+scale = Vector2(0.7, 0.7)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_rkh68")
+theme_override_font_sizes/font_size = 50
+text = "PRESS W TO MOVE UP"
+
+[node name="ChickenDown" type="AnimatedSprite2D" parent="."]
+position = Vector2(1112, 336)
+sprite_frames = SubResource("SpriteFrames_im5fi")
+animation = &"down"
+autoplay = "down"
+frame_progress = 0.2089
+
+[node name="Down" type="Label" parent="."]
+offset_left = 280.0
+offset_top = 320.0
+offset_right = 1286.0
+offset_bottom = 370.0
+scale = Vector2(0.7, 0.7)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_rkh68")
+theme_override_font_sizes/font_size = 50
+text = "PRESS S TO MOVE DOWN"
+autowrap_mode = 3
+
+[node name="Descrioption" type="Label" parent="."]
+offset_left = 232.0
+offset_top = 480.0
+offset_right = 1352.0
+offset_bottom = 636.0
+scale = Vector2(0.7, 0.7)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_rkh68")
+theme_override_font_sizes/font_size = 50
+text = "SCORE 10 POINTS WITH 3 LIVES!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonPlay" type="Button" parent="."]
+offset_left = 584.0
+offset_top = 656.0
+offset_right = 688.0
+offset_bottom = 696.0
+theme_override_fonts/font = ExtResource("1_rkh68")
+text = " Play "
+script = ExtResource("8_pwd4a")
+
+[connection signal="pressed" from="ButtonPlay" to="ButtonPlay" method="_on_pressed"]

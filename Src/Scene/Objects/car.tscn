@@ -1,0 +1,155 @@
+[gd_scene load_steps=18 format=3 uid="uid://ca8ubnsd3g26g"]
+
+[ext_resource type="Texture2D" uid="uid://ccmnrp6r6bgcb" path="res://Material freeway/carros/coches (1).png" id="1_41727"]
+[ext_resource type="Script" path="res://Src/Script/car.gd" id="1_lf3rp"]
+[ext_resource type="Texture2D" uid="uid://cdyd4lb13umv" path="res://Material freeway/carros/coches (2).png" id="2_icv0i"]
+[ext_resource type="Texture2D" uid="uid://bsrgpeb7k7ju1" path="res://Material freeway/carros/coches (3).png" id="3_6xhoi"]
+[ext_resource type="Texture2D" uid="uid://coh8af5jpieda" path="res://Material freeway/carros/coches (4).png" id="4_g1e26"]
+[ext_resource type="Texture2D" uid="uid://cxq2xnhobyc0u" path="res://Material freeway/carros/coches (5).png" id="5_wdkuh"]
+[ext_resource type="Texture2D" uid="uid://q6vvxoomfkkb" path="res://Material freeway/carros/coches (6).png" id="6_vo6vq"]
+[ext_resource type="Texture2D" uid="uid://dmy7xjrxwym1n" path="res://Material freeway/carros/coches (8).png" id="7_nma23"]
+[ext_resource type="Texture2D" uid="uid://dketjtxd63cym" path="res://Material freeway/carros/coches (9).png" id="8_vdbqd"]
+[ext_resource type="Texture2D" uid="uid://btdxxawj3bm35" path="res://Material freeway/carros/coches (7).png" id="8_xlsq5"]
+[ext_resource type="Texture2D" uid="uid://dw7m2poqaltpq" path="res://Material freeway/carros/coches (10).png" id="9_nb8j4"]
+[ext_resource type="Texture2D" uid="uid://u186oeblxoio" path="res://Material freeway/carros/coches (11).png" id="10_fvu54"]
+[ext_resource type="Texture2D" uid="uid://bdagrwqqnloa7" path="res://Material freeway/carros/coches (12).png" id="11_2jp53"]
+[ext_resource type="Texture2D" uid="uid://cy2cfbiv6c5bp" path="res://Material freeway/carros/coches (13).png" id="12_2t6y8"]
+[ext_resource type="Texture2D" uid="uid://i23o4vac3fdw" path="res://Material freeway/carros/coches (14).png" id="13_83lr3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vdtsh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_41727")
+}],
+"loop": true,
+"name": &"carro_01",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_icv0i")
+}],
+"loop": true,
+"name": &"carro_02",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6xhoi")
+}],
+"loop": true,
+"name": &"carro_03",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_g1e26")
+}],
+"loop": true,
+"name": &"carro_04",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wdkuh")
+}],
+"loop": true,
+"name": &"carro_05",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_vo6vq")
+}],
+"loop": true,
+"name": &"carro_06",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_xlsq5")
+}],
+"loop": true,
+"name": &"carro_07",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_nma23")
+}],
+"loop": true,
+"name": &"carro_08",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_vdbqd")
+}],
+"loop": true,
+"name": &"carro_09",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_nb8j4")
+}],
+"loop": true,
+"name": &"carro_10",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_fvu54")
+}],
+"loop": true,
+"name": &"carro_11",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_2jp53")
+}],
+"loop": true,
+"name": &"carro_12",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_2t6y8")
+}],
+"loop": true,
+"name": &"carro_13",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_83lr3")
+}],
+"loop": true,
+"name": &"carro_14",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wscr8"]
+size = Vector2(48, 32)
+
+[node name="car" type="RigidBody2D"]
+position = Vector2(640, 384)
+gravity_scale = 0.0
+script = ExtResource("1_lf3rp")
+metadata/_edit_group_ = true
+
+[node name="SpriteCars" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_vdtsh")
+animation = &"carro_07"
+
+[node name="CollisionCars" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wscr8")
+
+[node name="NotifierCars" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="NotifierCars" to="." method="_on_notifier_cars_screen_exited"]

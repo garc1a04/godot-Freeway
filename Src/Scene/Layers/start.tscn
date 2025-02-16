@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdamau05ihk1t"]
+
+[ext_resource type="Texture2D" uid="uid://c3l6hf7d0fx7b" path="res://Material freeway/galinha/baixo/sprite_0.png" id="1_g1t8h"]
+[ext_resource type="Script" path="res://Src/Script/start.gd" id="1_shmeh"]
+[ext_resource type="Texture2D" uid="uid://ccmnrp6r6bgcb" path="res://Material freeway/carros/coches (1).png" id="2_qhp6j"]
+[ext_resource type="FontFile" uid="uid://d1q5kib48ewmf" path="res://Material freeway/PressStart2P-Regular.ttf" id="3_1b2kr"]
+
+[node name="Start" type="CanvasLayer"]
+script = ExtResource("1_shmeh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.329438, 0.346042, 0.368184, 1)
+
+[node name="Chicken" type="Sprite2D" parent="."]
+position = Vector2(810, 315)
+texture = ExtResource("1_g1t8h")
+
+[node name="Car" type="Sprite2D" parent="."]
+position = Vector2(461, 340)
+rotation = 0.785398
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_qhp6j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -20.0
+offset_right = 140.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Ttile" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.705882, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_1b2kr")
+theme_override_font_sizes/font_size = 50
+text = "FREEWAY"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = 107.0
+offset_right = 149.0
+offset_bottom = 147.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 6.37
+theme_override_constants/separation = 40
+
+[node name="ButtonSolo" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1b2kr")
+text = "  SOLO  "
+
+[node name="ButtonMultiplayer" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1b2kr")
+text = " 2 PLAYERS "

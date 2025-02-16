@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://8j4sfsj4fun"]
+
+[ext_resource type="Script" path="res://Src/Script/MultiplayerLocal.gd" id="1_bet43"]
+[ext_resource type="Texture2D" uid="uid://5f4bsa13d0tm" path="res://Material freeway/wallpaperfreeway.png" id="2_ion5r"]
+[ext_resource type="PackedScene" uid="uid://cn8i135j5vu64" path="res://Src/Scene/end.tscn" id="3_05cte"]
+[ext_resource type="PackedScene" uid="uid://b1ooga53fgjm1" path="res://Src/Scene/chicken.tscn" id="4_7nmo4"]
+[ext_resource type="FontFile" uid="uid://d1q5kib48ewmf" path="res://Material freeway/PressStart2P-Regular.ttf" id="5_6675w"]
+
+[node name="MultiplayerLocal" type="Node"]
+script = ExtResource("1_bet43")
+
+[node name="SpriteTrack" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("2_ion5r")
+
+[node name="End" parent="." instance=ExtResource("3_05cte")]
+position = Vector2(640, 64)
+gravity_scale = 0.0
+
+[node name="FirstChicken" parent="." instance=ExtResource("4_7nmo4")]
+position = Vector2(344, 688)
+
+[node name="SecondChicken2" parent="." instance=ExtResource("4_7nmo4")]
+position = Vector2(1008, 688)
+
+[node name="SpeedCars" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="SlowCars" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Cars" type="Node2D" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+clip_contents = true
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.022
+anchor_right = 0.856
+anchor_bottom = 0.056
+offset_left = -7.36002
+offset_top = 0.159999
+offset_right = 0.319946
+offset_bottom = -0.32
+grow_vertical = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 700
+
+[node name="Player1" type="Container" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Score" type="Label" parent="HUD/HBoxContainer/Player1"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("5_6675w")
+text = "Player1: 0 "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mensage" type="Label" parent="HUD/HBoxContainer/Player1"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("5_6675w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player2" type="Container" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Score" type="Label" parent="HUD/HBoxContainer/Player2"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("5_6675w")
+text = "Player2: 0 "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mensage" type="Label" parent="HUD/HBoxContainer/Player2"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("5_6675w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pointed" from="FirstChicken" to="." method="_on_chicken_pointed"]
+[connection signal="pointed" from="SecondChicken2" to="." method="_on_chicken_pointed"]
+[connection signal="timeout" from="SpeedCars" to="." method="_on_speed_cars_timeout"]
+[connection signal="timeout" from="SlowCars" to="." method="_on_slow_cars_timeout"]

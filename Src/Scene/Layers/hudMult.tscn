@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3lawi7gtkm30"]
+
+[ext_resource type="FontFile" uid="uid://d1q5kib48ewmf" path="res://Material freeway/PressStart2P-Regular.ttf" id="1_ajlvv"]
+[ext_resource type="Texture2D" uid="uid://l0f2qntin0h5" path="res://Material freeway/galinha/baixo/sprite_1.png" id="2_xr2mc"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+clip_contents = true
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.022
+anchor_right = 0.887
+anchor_bottom = 0.044
+offset_left = 10.64
+offset_top = 0.16
+offset_right = -121.36
+offset_bottom = 8.32
+grow_vertical = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 600
+
+[node name="Player1" type="Container" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Score" type="Label" parent="HBoxContainer/Player1"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_ajlvv")
+text = "Player1: 0 "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player2" type="Container" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Score" type="Label" parent="HBoxContainer/Player2"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_ajlvv")
+text = "Player2: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Life1" type="HBoxContainer" parent="."]
+offset_left = 120.0
+offset_top = 10.0
+offset_right = 468.0
+offset_bottom = 130.0
+scale = Vector2(0.25, 0.25)
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="TextureRect" type="TextureRect" parent="Life1"]
+layout_mode = 2
+texture = ExtResource("2_xr2mc")
+
+[node name="TextureRect2" type="TextureRect" parent="Life1"]
+layout_mode = 2
+texture = ExtResource("2_xr2mc")
+
+[node name="TextureRect3" type="TextureRect" parent="Life1"]
+layout_mode = 2
+texture = ExtResource("2_xr2mc")
+
+[node name="Life2" type="HBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -230.0
+offset_top = 10.0
+offset_right = 118.0
+offset_bottom = 130.0
+grow_horizontal = 0
+scale = Vector2(0.25, 0.25)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="TextureRect" type="TextureRect" parent="Life2"]
+layout_mode = 2
+texture = ExtResource("2_xr2mc")
+
+[node name="TextureRect2" type="TextureRect" parent="Life2"]
+layout_mode = 2
+texture = ExtResource("2_xr2mc")
+
+[node name="TextureRect3" type="TextureRect" parent="Life2"]
+layout_mode = 2
+texture = ExtResource("2_xr2mc")

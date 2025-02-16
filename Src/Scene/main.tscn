@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://cchhk1x5s0o21"]
+
+[ext_resource type="Texture2D" uid="uid://5f4bsa13d0tm" path="res://Material freeway/wallpaperfreeway.png" id="1_6q17c"]
+[ext_resource type="Script" path="res://Src/Script/main.gd" id="1_w40d3"]
+[ext_resource type="PackedScene" uid="uid://b1ooga53fgjm1" path="res://Src/Scene/Objects/chicken.tscn" id="2_h6yhb"]
+[ext_resource type="PackedScene" uid="uid://cn8i135j5vu64" path="res://Src/Scene/Objects/end.tscn" id="3_74uyu"]
+[ext_resource type="PackedScene" uid="uid://bg5q6763pk7g" path="res://Src/Scene/Layers/hud.tscn" id="5_0m4bk"]
+[ext_resource type="AudioStream" uid="uid://bhnruyvdrwdf8" path="res://Material freeway/sons/tema.wav" id="6_vwbwx"]
+[ext_resource type="AudioStream" uid="uid://biwdnuttagikl" path="res://Material freeway/sons/ponto.wav" id="7_6b86r"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_w40d3")
+
+[node name="End" parent="." instance=ExtResource("3_74uyu")]
+position = Vector2(640, 64)
+gravity_scale = 0.0
+
+[node name="SpriteTrack" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("1_6q17c")
+
+[node name="Chicken" parent="." instance=ExtResource("2_h6yhb")]
+
+[node name="SpeedCars" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="SlowCars" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Cars" type="Node2D" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("5_0m4bk")]
+
+[node name="MusicTheme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_vwbwx")
+
+[node name="Pointed" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_6b86r")
+
+[connection signal="collision" from="Chicken" to="." method="_on_chicken_collision"]
+[connection signal="die" from="Chicken" to="." method="_on_chicken_die"]
+[connection signal="pointed" from="Chicken" to="." method="_on_chicken_pointed"]
+[connection signal="timeout" from="SpeedCars" to="." method="_on_speed_cars_timeout"]
+[connection signal="timeout" from="SlowCars" to="." method="_on_slow_cars_timeout"]
